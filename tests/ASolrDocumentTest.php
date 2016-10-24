@@ -29,6 +29,15 @@ class ASolrDocumentTest extends CTestCase {
 		$this->assertEquals(array("name","incubationdate_dt"),$doc->attributeNames());
 	}
 	/**
+	 * Tests the attributeNames() method in a ASolrDocument::model() instance
+	 */
+	public function testAttributeNamesFromStaticModelMethod() {
+		$doc = ExampleExtendedSolrDocument::model();
+		$this->assertEquals(array("incubationdate_dt"),$doc->attributeNames());
+		$doc->name = "test item";
+		$this->assertEquals(array("name","incubationdate_dt"),$doc->attributeNames());
+	}
+	/**
 	 * Tests the primary key methods
 	 */
 	public function testPrimaryKey() {
