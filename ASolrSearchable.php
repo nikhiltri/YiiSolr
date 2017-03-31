@@ -150,7 +150,7 @@ class ASolrSearchable extends CActiveRecordBehavior {
 
 	/**
 	 * Resolves the value of an attribute on an owner object.
-	 * 
+	 *
 	 * @param  mixed  $owner      the object or array of objects that the attribute belongs to
 	 * @param  string $attribute  the name of the attribute to get the value for
 	 * @return mixed              the attribute value
@@ -310,7 +310,9 @@ class ASolrSearchable extends CActiveRecordBehavior {
 		foreach($this->getAttributes() as $modelAttribute => $docAttribute) {
 			$resolved = $this->resolveAttributeName($modelAttribute);
 			if (!strstr($modelAttribute,".")) {
-				$attributes[$modelAttribute] = $document->{$resolved};
+        if (isset($document->{$resolved})) {
+          $attributes[$modelAttribute] = $document->{$resolved};
+        }
 				continue;
 			}
 			$reference = &$relationAttributes;
